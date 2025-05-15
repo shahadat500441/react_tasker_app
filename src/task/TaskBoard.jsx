@@ -55,7 +55,12 @@ const TaskBoard = () => {
         tasks.length = 0;
         setTasks([...tasks])
     }
-
+    const handelIsFavorite = (taskId)=>{
+        const taskIndex  = tasks.findIndex((task)=> task.id === taskId);
+        const newTasks = [...tasks]
+        newTasks[taskIndex].isFavorite = !newTasks[taskIndex].isFavorite;
+        setTasks(newTasks)
+    }
 
     return (
         <section className="mb-20" id="tasks">
@@ -81,7 +86,9 @@ const TaskBoard = () => {
 
                  tasks={tasks}
                  onDelete={handelDeleteTask}
-                onEdit={handelEditTask}></TaskList>
+                onEdit={handelEditTask}
+                onFav={handelIsFavorite}
+                ></TaskList>
 			</div>
 		</div>
 	</section>
